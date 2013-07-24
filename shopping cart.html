@@ -1,0 +1,116 @@
+<div class="shop-cart">
+<h1>My Order</h1>
+<table class="cart">
+    <tbody>
+        <tr class="var">
+            <th class="quantity">QTY </th>
+            <th class="productName">Product Name </th>
+            <th class="sizeCol">Size </th>
+            <th class="priceCol">Price </th>
+            <th class="removelinks">&nbsp; </th>
+        </tr>
+		  <tr class="var">
+            <th class="quantity">QTY 2</th>
+            <th class="productName">Product Name </th>
+            <th class="sizeCol">Size </th>
+            <th class="priceCol">Price </th>
+            <th class="removelinks">&nbsp; </th>
+        </tr>
+        <tr class="val">
+            <td class="quantity">{tag_productquantity} </td>
+            <td class="productName">{tag_productname_nolink} </td>
+            <td class="sizeCol">{tag_custom1} </td>
+            <td class="priceCol">{tag_producttotal} </td>
+            <td class="removelinks">{tag_productremovelink} </td>
+        </tr>
+        <tr class="spacer">
+            <td colspan="5"> </td>
+        </tr>
+        <tr class="sub-total">
+            <td class="quantity"><strong style="font-size: 15px;">Price</strong> </td>
+            <td align="right" class="priceCol" colspan="3"><strong><span id="price_val">{tag_productgrandtotal}</span> inc GST</strong> <br />
+            (Excluding Shipping Charges) </td>
+            <td style="width: 40px;"> </td>
+        </tr>
+        <tr class="discount" style="background-color: #ffefc8;">
+            <td colspan="2"><strong style="font-size: 15px;">Promotion Code</strong></td>
+            <td class="quantity">
+            <div id="discount_field">{tag_discountcode}<input type="button" class="update" onclick="return false;" value="Update" /></div>
+            </td>
+            <td class="priceCol"><strong>- ({tag_invoicediscountamount})</strong></td>
+            <td class="removelinks"> </td>
+        </tr>
+        <tr class="giftvoucher">
+            <td>Gift Voucher </td>
+            <td class="quantity" colspan="2">{tag_giftvoucher}<input type="button" class="update" onclick="return false;" value="Update" /> </td>
+            <td>({tag_giftvoucheramount}) </td>
+            <td class="removelinks"></td>
+        </tr>
+        <tr class="spacer">
+            <td colspan="5"> </td>
+        </tr>
+        <tr class="shipping_postcode">
+            <td colspan="2"><strong style="font-size: 15px;">Delivery Postcode</strong>{module_url,shippingPostcode}</td>
+            <td colspan="1"><input type="text" name="ShippingZip" id="ShippingZip" style="width: 80px;" onchange="checkPostcode(this.value);" /></td>
+            <td class="priceCol" colspan="1">{tag_shippingtotal} </td>
+            <td class="removelinks"> </td>
+        </tr>
+        <tr class="spacer">
+            <td colspan="5"> </td>
+        </tr>
+        <tr class="shipping" id="shippingSpan">
+            <td colspan="2"><strong style="font-size: 15px;">Delivery Charges</strong></td>
+            <td colspan="1">{tag_shippingoptions} <a href="http://www.carpetcourt.com.au/media/docs/Postcode_Guide.pdf" target="_blank">Guide</a></td>
+            <td class="priceCol" colspan="1">{tag_shippingtotal} </td>
+            <td class="removelinks"></td>
+        </tr>
+        <tr class="spacer">
+            <td colspan="5"> </td>
+        </tr>
+        <tr class="total">
+            <td class="quantity" colspan="2" style="color: #ff0000;"><strong style="font-size: 18px;">Total</strong> (inc. discount)</td>
+            <td class="priceCol" colspan="2"><strong>{tag_invoicetotal} inc GST</strong> </td>
+            <td> </td>
+        </tr>
+        <tr align="right" class="nobg">
+            <td colspan="5"><strong>Please allow up to 15 business days for Delivery</strong><br />
+            Deliveries only available in Australia | <a href="/return-policy" target="_blank">View Return Policy</a> </td>
+        </tr>
+        <tr class="nobg withbuttons">
+            <td class="actions" colspan="5">{tag_buybutton,CHECK OUT}<a href="/products" class="continue">Continue Shopping</a> </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<style type="text/css">
+    .giftvoucher, .shipping{
+    display: none;
+    }
+    select.shoppingDropDown {
+    width: 125px;
+    }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jGrowl.js"></script>
+<link href="/js/jGrowl.css" rel="stylesheet" />
+<script type="text/javascript">
+window.alert = function (msg) {
+
+    $.jGrowl(msg, {
+        beforeOpen: function () {
+$('.val').find('td').each(function(){
+
+	$(this).find('.productitemcell:odd').addClass('odd');
+	
+	
+
+}).end().find('td.sizeCol').find('.productitemcell').each(function(){
+
+	$(this).text($(this).text().split(' - ')[1]);
+
+});
+        }
+
+    });
+};
+</script>
